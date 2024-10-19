@@ -22,11 +22,19 @@ async def start_handler(message: Message):
 @dp.message()
 async def input_handler(message: Message):
     if message.text == "Покажи свой функционал":
-        await message.answer("Отлично! Вот что я могу:")
+        await message.answer("Отлично! Вот что я могу:", reply_markup=kb.actionsMenu)
 
     elif message.text == "Закончить диалог":
         await message.answer("Жаль, было бы приятно поболтать")
 
+@dp.callback_query(lambda callback: callback.data == "plus")
+async def plus_random_numbers(callback_query: types.CallbackQuery):
+    await callback_query.message.answer(f"Сплюсуем 2 и 10 \nОтвет: {2 + 10}")
+
+@dp.callback_query(lambda callback: callback.data == "multiply")
+async def multiply_random_numbers(callback_query: types.CallbackQuery):
+    await callback_query.message.answer(f"УМНОЖИМ числа 2 и 10 \nОтвет: {2 * 10}")
+    
 async def main():
     await dp.start_polling(bot)
 

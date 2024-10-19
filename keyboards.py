@@ -9,3 +9,12 @@ startsMenu = ReplyKeyboardMarkup(
     ],
     input_field_placeholder="Выбери действие:"
 )
+
+actionsMenu = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text="Плюсовать числа", callback_data='plus'),
+            InlineKeyboardButton(text="Множить числа", callback_data='multiply'),
+        ]
+    ]
+)
